@@ -86,13 +86,13 @@ void print_stats(int num_dice)
 
   printf("%2d: ", num_dice);
 
-  for (int i = 0; i < num_dice; i++) {
+  for (int i = 0; i < num_dice && i < 23; i++) {
     val = ((double) stats[i] / (double) REPS) * 100;
 
     if (val < 0.1)
       printf("    %s   ", "-");
     else
-      printf("%5.1f%%\t", val);
+      printf("%5.1f%%  ", val);
   }
 
   printf("\n");
