@@ -1,1 +1,2 @@
 # wpoker
+Würfelpoker chance simulator.
