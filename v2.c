@@ -4,9 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-#define NUM_DICE 36
+#define NUM_DICE 3
 #define MAX_VAL 6
-#define REPS 1000000
+#define REPS 10
 
 
 int *stats;
@@ -50,7 +50,10 @@ int max_duplicates()
 
 void update_stats(int max_dups)
 {
-  stats[max_dups - 1]++;
+  //stats[max_dups - 1]++;
+
+  for (int i = 0; i < max_dups; i++)
+    stats[i]++;
 
   return;
 }
@@ -110,12 +113,25 @@ int main(void)
 
     for (int i = 0; i < REPS; i++) {
       roll_dice(j);
+      printf("roll: ");
+      print_results();
+
       add_wildcards();
+      printf("wc  : ");
+      print_results();
+
       update_stats(max_duplicates());
       reset_array(results, MAX_VAL);
+
+      printf("stat: ");
+      print_arr(stats, j);
+      printf("\n");
     }
 
+    printf("stat:");
     print_stats(j);
+    printf("\n\n\n");
+
     free(stats);
   }
 
