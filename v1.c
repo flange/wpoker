@@ -4,9 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-#define NUM_DICE 3
+#define NUM_DICE 36
 #define MAX_VAL 6
-#define REPS 10
+#define REPS 1000000
 
 
 int *stats;
@@ -89,13 +89,13 @@ void print_stats(int num_dice)
 
   printf("%2d: ", num_dice);
 
-  for (int i = 0; i < num_dice && i < 23; i++) {
+  for (int i = 0; i < num_dice && i < 26; i++) {
     val = ((double) stats[i] / (double) REPS) * 100;
 
-    if (val < 0.1)
-      printf("    %s   ", "-");
+    if (val < 0.005)
+      printf("      %s    ", "-");
     else
-      printf("%5.1f%%  ", val);
+      printf("%8.2f%%  ", val);
   }
 
   printf("\n");
@@ -113,24 +113,24 @@ int main(void)
 
     for (int i = 0; i < REPS; i++) {
       roll_dice(j);
-      printf("roll: ");
-      print_results();
+      //printf("roll: ");
+      //print_results();
 
       add_wildcards();
-      printf("wc  : ");
-      print_results();
+      //printf("wc  : ");
+      //print_results();
 
       update_stats(max_duplicates());
       reset_array(results, MAX_VAL);
 
-      printf("stat: ");
-      print_arr(stats, j);
-      printf("\n");
+      //printf("stat: ");
+      //print_arr(stats, j);
+      //printf("\n");
     }
 
-    printf("stat:");
+    //printf("stat:");
     print_stats(j);
-    printf("\n\n\n");
+    //printf("\n\n\n");
 
     free(stats);
   }
